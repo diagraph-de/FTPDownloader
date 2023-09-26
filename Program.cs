@@ -6,13 +6,15 @@ namespace FTPDownloader
 {
     internal class Program
     {
-        // Usage: FTPDownloader.exe <FTP-Server> <FTP-Directory> <Local-Path> <Username> <Password> <MaxDays> <Prefix>
+        // Usage: FTPDownloader.exe <FTP-Server> <FTP-Directory> <Local-Path> <Username> <Password> <MaxDays> <Prefix> <delete>
         private static void Main(string[] args)
         {
-            if (args.Length != 7)
+            if (args.Length != 8)
             {
                 Console.WriteLine(
-                    "Usage: FTPDownloader.exe <FTP-Server> <FTP-Directory> <Local-Path> <Username> <Password> <MaxDays> <Prefix>");
+                    "Usage: FTPDownloader.exe <FTP-Server> <FTP-Directory> <Local-Path> <Username> <Password> <MaxDays> <Prefix> <delete>");
+                Console.WriteLine(
+                    "Example: FTPDownloader.exe ftp://192.168.173.100 /output/ c:\\temp\\download\\ ftpuser \"\" 30 \"SCANNER0_\" n");
                 return;
             }
 
@@ -28,7 +30,8 @@ namespace FTPDownloader
                 return;
             }
 
-            var prefix = args[6];
+            var prefix = args[6];    
+            var delete = args[7];    
 
             try
             {
@@ -45,7 +48,7 @@ namespace FTPDownloader
                         var fileName = reader.ReadLine();
                         if (!string.IsNullOrEmpty(fileName))
                             DownloadAndDeleteFile(ftpServer, ftpFolder + fileName, localPath, userName, password,
-                                prefix);
+                                prefix, delete.ToLower()=="y" || delete.ToLower() == "yes");
                     }
                 }
 
@@ -58,7 +61,7 @@ namespace FTPDownloader
         }
 
         private static void DownloadAndDeleteFile(string ftpServer, string filePath, string localFolder,
-            string userName, string password, string prefix)
+            string userName, string password, string prefix, bool delete)
         {
             try
             {
@@ -77,10 +80,13 @@ namespace FTPDownloader
                 }
 
                 // Delete file on FTP-Server
-                var deleteRequest = (FtpWebRequest) WebRequest.Create(new Uri(ftpServer + filePath));
-                deleteRequest.Method = WebRequestMethods.Ftp.DeleteFile;
-                deleteRequest.Credentials = new NetworkCredential(userName, password);
-                deleteRequest.GetResponse();
+                if (delete)
+                {
+                    var deleteRequest = (FtpWebRequest)WebRequest.Create(new Uri(ftpServer + filePath));
+                    deleteRequest.Method = WebRequestMethods.Ftp.DeleteFile;
+                    deleteRequest.Credentials = new NetworkCredential(userName, password);
+                    deleteRequest.GetResponse();
+                } 
             }
             catch (WebException e)
             {
