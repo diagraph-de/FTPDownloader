@@ -33,7 +33,8 @@ shell
         <Password>: The password for the FTP server. If the password is empty, use an empty pair of double quotes ("").        
 
 Example:
-      ftp://192.168.173.100 /output/ C:\temp ftpuser ""  
+
+      FTPDownloader.exe ftp://192.168.173.100 /output/ C:\temp ftpuser ""  
 
 The application will download the files from the FTP server and subsequently delete them from the server. 
 License
