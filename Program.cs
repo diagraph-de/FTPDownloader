@@ -6,21 +6,29 @@ namespace FTPDownloader
 {
     internal class Program
     {
-        //example FTPDownloader.exe ftp://192.168.173.100 /output/ C:\temp ftpuser ""
+        // Usage: FTPDownloader.exe <FTP-Server> <FTP-Directory> <Local-Path> <Username> <Password> <MaxDays> <Prefix>
         private static void Main(string[] args)
         {
-            if (args.Length != 5)
+            if (args.Length != 7)
             {
                 Console.WriteLine(
-                    "Verwendung: FTPDownloader.exe <FTP-Server> <FTP-Verzeichnis> <Lokaler-Pfad> <Benutzername> <Passwort>");
+                    "Usage: FTPDownloader.exe <FTP-Server> <FTP-Directory> <Local-Path> <Username> <Password> <MaxDays> <Prefix>");
                 return;
             }
 
             var ftpServer = args[0];
             var ftpFolder = args[1];
-            var localFolder = args[2];
+            var localPath = args[2];
             var userName = args[3];
             var password = args[4];
+
+            if (!int.TryParse(args[5], out var maxDays))
+            {
+                Console.WriteLine("MaxDays argument must be a positive integer.");
+                return;
+            }
+
+            var prefix = args[6];
 
             try
             {
@@ -36,18 +44,21 @@ namespace FTPDownloader
                     {
                         var fileName = reader.ReadLine();
                         if (!string.IsNullOrEmpty(fileName))
-                            DownloadAndDeleteFile(ftpServer, ftpFolder + fileName, localFolder, userName, password);
+                            DownloadAndDeleteFile(ftpServer, ftpFolder + fileName, localPath, userName, password,
+                                prefix);
                     }
                 }
+
+                if (maxDays > 0) CleanLocalFolder(localPath, maxDays, prefix);
             }
             catch (WebException e)
             {
-                Console.WriteLine("Fehler beim Verbinden mit dem FTP-Server: " + e.Message);
+                Console.WriteLine("Error connecting to FTP-Server: " + e.Message);
             }
         }
 
         private static void DownloadAndDeleteFile(string ftpServer, string filePath, string localFolder,
-            string userName, string password)
+            string userName, string password, string prefix)
         {
             try
             {
@@ -57,7 +68,7 @@ namespace FTPDownloader
 
                 using (var downloadResponse = (FtpWebResponse) downloadRequest.GetResponse())
                 using (var responseStream = downloadResponse.GetResponseStream())
-                using (var localFile = File.Create(Path.Combine(localFolder, Path.GetFileName(filePath))))
+                using (var localFile = File.Create(Path.Combine(localFolder, prefix + Path.GetFileName(filePath))))
                 {
                     var buffer = new byte[1024];
                     int bytesRead;
@@ -65,7 +76,7 @@ namespace FTPDownloader
                         localFile.Write(buffer, 0, bytesRead);
                 }
 
-                // Datei auf dem FTP-Server löschen
+                // Delete file on FTP-Server
                 var deleteRequest = (FtpWebRequest) WebRequest.Create(new Uri(ftpServer + filePath));
                 deleteRequest.Method = WebRequestMethods.Ftp.DeleteFile;
                 deleteRequest.Credentials = new NetworkCredential(userName, password);
@@ -73,7 +84,29 @@ namespace FTPDownloader
             }
             catch (WebException e)
             {
-                Console.WriteLine("Fehler beim Herunterladen und Löschen der Datei: " + e.Message);
+                Console.WriteLine("Error downloading and deleting file: " + e.Message);
+            }
+        }
+
+        private static void CleanLocalFolder(string localPath, int maxDays, string prefix)
+        {
+            try
+            {
+                var dirInfo = new DirectoryInfo(localPath);
+                var files = dirInfo.GetFiles();
+
+                var cutoffDate = DateTime.Now.AddDays(-maxDays);
+
+                foreach (var file in files)
+                    if (file.LastWriteTime < cutoffDate && file.Name.StartsWith(prefix))
+                    {
+                        file.Delete();
+                        Console.WriteLine($"Deleted file: {file.Name}");
+                    }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error cleaning the local folder: " + e.Message);
             }
         }
     }
