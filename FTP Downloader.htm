@@ -1,0 +1,177 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:8.0pt;
+	margin-left:0cm;
+	line-height:107%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+.MsoChpDefault
+	{font-family:"Calibri",sans-serif;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:107%;}
+@page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+</head>
+
+<body lang=DE link=blue vlink="#954F72" style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal style='line-height:normal'><b><span lang=EN-US
+style='font-size:24.0pt;font-family:"Times New Roman",serif'>FTP Downloader</span></b></p>
+
+<p class=MsoNormal style='line-height:normal'><span lang=EN-US
+style='font-size:12.0pt;font-family:"Times New Roman",serif'>This GitHub
+repository contains a simple C# application that allows you to download files
+from an FTP server and subsequently delete them from the FTP server. The
+application has been developed to automate file management on an FTP server and
+streamline the process.</span></p>
+
+<p class=MsoNormal style='line-height:normal'><b><span lang=EN-US
+style='font-size:18.0pt;font-family:"Times New Roman",serif'>Usage Instructions</span></b></p>
+
+<p class=MsoNormal style='line-height:normal'><span lang=EN-US
+style='font-size:12.0pt;font-family:"Times New Roman",serif'>Follow these steps
+to use the application:</span></p>
+
+<ol start=1 type=1>
+ <li class=MsoNormal style='line-height:normal'><span lang=EN-US
+     style='font-size:12.0pt;font-family:"Times New Roman",serif'>Clone the
+     repository to your local computer:</span></li>
+</ol>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:36.0pt;line-height:normal'><span lang=EN-US style='font-size:10.0pt;
+font-family:"Courier New"'>shell</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+style='font-size:10.0pt;font-family:Symbol'>·</span><span lang=EN-US
+style='font-size:10.0pt;font-family:"Courier New"'>  git clone
+https://github.com/YourUsername/FTP-Downloader.git</span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:12.0pt;
+font-family:Symbol'>·</span><span lang=EN-US style='font-size:12.0pt;
+font-family:"Times New Roman",serif'>  Navigate to the directory of the cloned
+repository:</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>shell</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+style='font-size:10.0pt;font-family:Symbol'>·</span><span lang=EN-US
+style='font-size:10.0pt;font-family:"Courier New"'>  cd FTP-Downloader</span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:12.0pt;
+font-family:Symbol'>·</span><span lang=EN-US style='font-size:12.0pt;
+font-family:"Times New Roman",serif'>  Compile the application:</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>shell</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+style='font-size:10.0pt;font-family:Symbol'>·</span><span lang=EN-US
+style='font-size:10.0pt;font-family:"Courier New"'>  csc Program.cs</span></p>
+
+<p class=MsoNormal style='line-height:normal'><span style='font-size:12.0pt;
+font-family:Symbol'>·</span><span lang=EN-US style='font-size:12.0pt;
+font-family:"Times New Roman",serif'>  Run the application and provide the
+required parameters via the command line:</span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;line-height:normal'><span
+style='font-size:10.0pt;font-family:"Courier New"'>shell</span></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:0cm;
+margin-left:36.0pt;text-indent:-18.0pt;line-height:normal'><span lang=EN-US
+style='font-size:10.0pt;font-family:"Courier New"'>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>FTPDownloader.exe
+&lt;FTP-Server&gt; &lt;FTP-Directory&gt; &lt;Local-Path&gt; &lt;Username&gt;
+&lt;Password&gt;</span></p>
+
+<p class=MsoNormal style='margin-left:72.0pt;text-indent:-18.0pt;line-height:
+normal'><span lang=EN-US style='font-size:12.0pt;font-family:"Times New Roman",serif'>5.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span
+lang=EN-US style='font-size:12.0pt;font-family:"Times New Roman",serif'>&nbsp;</span></p>
+
+<ol start=5 type=1>
+ <ul type=circle>
+  <li class=MsoNormal style='line-height:normal'><span lang=EN-US
+      style='font-size:10.0pt;font-family:"Courier New"'>&lt;FTP-Server&gt;</span><span
+      lang=EN-US style='font-size:12.0pt;font-family:"Times New Roman",serif'>:
+      The URL of the FTP server, e.g., </span><span lang=EN-US
+      style='font-size:10.0pt;font-family:"Courier New"'>ftp://192.168.173.100</span><span
+      lang=EN-US style='font-size:12.0pt;font-family:"Times New Roman",serif'>.</span></li>
+  <li class=MsoNormal style='line-height:normal'><span lang=EN-US
+      style='font-size:10.0pt;font-family:"Courier New"'>&lt;FTP-Directory&gt;</span><span
+      lang=EN-US style='font-size:12.0pt;font-family:"Times New Roman",serif'>:
+      The directory on the FTP server from which files should be downloaded and
+      deleted, e.g., </span><span lang=EN-US style='font-size:10.0pt;
+      font-family:"Courier New"'>/output/</span><span lang=EN-US
+      style='font-size:12.0pt;font-family:"Times New Roman",serif'>.</span></li>
+  <li class=MsoNormal style='line-height:normal'><span lang=EN-US
+      style='font-size:10.0pt;font-family:"Courier New"'>&lt;Local-Path&gt;</span><span
+      lang=EN-US style='font-size:12.0pt;font-family:"Times New Roman",serif'>:
+      The local path on your computer where files should be downloaded, e.g., </span><span
+      lang=EN-US style='font-size:10.0pt;font-family:"Courier New"'>C:\temp</span><span
+      lang=EN-US style='font-size:12.0pt;font-family:"Times New Roman",serif'>.</span></li>
+  <li class=MsoNormal style='line-height:normal'><span lang=EN-US
+      style='font-size:10.0pt;font-family:"Courier New"'>&lt;Username&gt;</span><span
+      lang=EN-US style='font-size:12.0pt;font-family:"Times New Roman",serif'>:
+      The username for the FTP server.</span></li>
+  <li class=MsoNormal style='line-height:normal'><span lang=EN-US
+      style='font-size:10.0pt;font-family:"Courier New"'>&lt;Password&gt;</span><span
+      lang=EN-US style='font-size:12.0pt;font-family:"Times New Roman",serif'>:
+      The password for the FTP server. If the password is empty, use an empty
+      pair of double quotes (&quot;&quot;).</span></li>
+ </ul>
+ <li class=MsoNormal style='line-height:normal'><span lang=EN-US
+     style='font-size:12.0pt;font-family:"Times New Roman",serif'>The
+     application will download the files from the FTP server and subsequently
+     delete them from the server.</span></li>
+</ol>
+
+<p class=MsoNormal style='line-height:normal'><b><span lang=EN-US
+style='font-size:18.0pt;font-family:"Times New Roman",serif'>License</span></b></p>
+
+<p class=MsoNormal style='line-height:normal'><span lang=EN-US
+style='font-size:12.0pt;font-family:"Times New Roman",serif'>This project is
+licensed under the MIT License. For more information, please see the </span><span
+style='font-size:12.0pt;font-family:"Times New Roman",serif'><a
+href="https://chat.openai.com/c/LICENSE" target="_new"><span lang=EN-US>License
+File</span></a></span><span lang=EN-US style='font-size:12.0pt;font-family:
+"Times New Roman",serif'>.</span></p>
+
+<p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+
+</div>
+
+</body>
+
+</html>
