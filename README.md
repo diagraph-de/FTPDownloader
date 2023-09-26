@@ -8,7 +8,7 @@ Usage Instructions
 
 Follow these steps to use the application:
 
-    Clone the repository to your local computer:
+Clone the repository to your local computer:
 
 shell
 
@@ -30,7 +30,10 @@ shell
         <FTP-Directory>: The directory on the FTP server from which files should be downloaded and deleted, e.g., /output/.
         <Local-Path>: The local path on your computer where files should be downloaded, e.g., C:\temp.
         <Username>: The username for the FTP server.
-        <Password>: The password for the FTP server. If the password is empty, use an empty pair of double quotes ("").
+        <Password>: The password for the FTP server. If the password is empty, use an empty pair of double quotes ("").        
+
+Example:
+      ftp://192.168.173.100 /output/ C:\temp ftpuser ""  
 
 The application will download the files from the FTP server and subsequently delete them from the server. 
 License
